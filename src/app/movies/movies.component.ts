@@ -10,11 +10,9 @@ import {Movie} from "./movies.model";
   providers: [MoviesService]
 })
 export class MoviesComponent implements OnInit {
-  //@Input() movie: Movie;
-  //@Input() index: string;
 
   ngOnInit() {
-    //this.index = this.movie._id;
+
   }
 
 }

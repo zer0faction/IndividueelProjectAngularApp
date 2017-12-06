@@ -1,3 +1,5 @@
+<a class="btn btn-success" (click)="onNewMovie()">Add new movie</a>
+<br>
 <app-movies-single
   *ngFor="let movieEl of movies; let i = index"
   [movie]="movieEl"

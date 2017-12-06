@@ -10,14 +10,17 @@ import { MoviesListComponent } from './movies/movies-list/movies-list.component'
 import { HttpModule } from '@angular/http';
 import { MoviesDetailComponent } from './movies/movies-detail/movies-detail.component';
 import { MoviesSingleComponent } from './movies/movies-list/movies-single/movies-single.component';
+import { MoviesEditComponent } from './movies/movies-edit/movies-edit.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
   //{ path: '', redirectTo: '/home',pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'movies', component: MoviesComponent, children: [
     {path: '', component: MoviesListComponent},
-    {path: ':id', component: MoviesDetailComponent}
-    //{path: ':id/edit', component: }
+    {path: 'new', component: MoviesEditComponent},
+    {path: ':id', component: MoviesDetailComponent},
+    {path: ':id/edit', component: MoviesEditComponent}
   ] }
 ];
 
@@ -29,12 +32,15 @@ const appRoutes: Routes = [
     HeaderComponent,
     MoviesListComponent,
     MoviesDetailComponent,
-    MoviesSingleComponent
+    MoviesSingleComponent,
+    MoviesEditComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    HttpModule
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
