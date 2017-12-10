@@ -12,6 +12,14 @@ import { MoviesDetailComponent } from './movies/movies-detail/movies-detail.comp
 import { MoviesSingleComponent } from './movies/movies-list/movies-single/movies-single.component';
 import { MoviesEditComponent } from './movies/movies-edit/movies-edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './users/login/login.component';
+import { NewAccountComponent } from './users/new-account/new-account.component';
+import { AccountComponent } from './users/account/account.component';
+import {AuthService} from "./users/auth.service";
+import { MovieswatchedListComponent } from './users/account/movieswatched-list/movieswatched-list.component';
+import { MovieswatchedSingleComponent } from './users/account/movieswatched-list/movieswatched-single/movieswatched-single.component';
+import {MoviesService} from "./movies/movies.service";
 
 const appRoutes: Routes = [
   //{ path: '', redirectTo: '/home',pathMatch: 'full'},
@@ -21,7 +29,12 @@ const appRoutes: Routes = [
     {path: 'new', component: MoviesEditComponent},
     {path: ':id', component: MoviesDetailComponent},
     {path: ':id/edit', component: MoviesEditComponent}
-  ] }
+  ]},
+  { path: 'users',component: UsersComponent, children: [
+    { path: 'account',component: AccountComponent},
+    { path: 'login',component: LoginComponent},
+    { path: 'new',component: NewAccountComponent}
+  ]}
 ];
 
 @NgModule({
@@ -33,7 +46,13 @@ const appRoutes: Routes = [
     MoviesListComponent,
     MoviesDetailComponent,
     MoviesSingleComponent,
-    MoviesEditComponent
+    MoviesEditComponent,
+    UsersComponent,
+    LoginComponent,
+    NewAccountComponent,
+    AccountComponent,
+    MovieswatchedListComponent,
+    MovieswatchedSingleComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +61,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService,MoviesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

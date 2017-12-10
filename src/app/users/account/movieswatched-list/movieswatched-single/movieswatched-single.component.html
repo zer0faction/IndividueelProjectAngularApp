@@ -1,0 +1,12 @@
+<a [routerLink]="[index]"
+   routerLinkActive="active"
+   class="list-group-item clearfix">
+  <div>
+    <h4 class="list-group-item-heading">{{ movie.title }}</h4>
+    <p class="list-group-item-text">{{ movie.description }}</p>
+
+    <img
+      src="{{ movie.posterUrl }}"
+      class="img-responsive" style="max-height: 130px; ">
+  </div>
+</a>
