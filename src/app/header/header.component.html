@@ -8,14 +8,14 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-      <ng-template [ngIf]="!authService.isAuthenticated()">
+      <ng-template [ngIf]="!isAuth()">
         <li><a routerLink="/users/new">Register</a> </li>
         <li><a routerLink="/users/login">Login</a> </li>
       </ng-template>
 
-      <ng-template [ngIf]="authService.isAuthenticated()">
+      <ng-template [ngIf]="isAuth()">
         <li><a routerLink="/users/account">My account</a> </li>
-        <li><a routerLink="/home/" (click)="onLogout()">Logout</a> </li>
+        <li><a (click)="onLogout()">Logout</a> </li>
       </ng-template>
 
       </ul>

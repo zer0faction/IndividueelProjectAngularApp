@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MoviesService} from "../movies.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Movie} from "../movies.model";
+import {AuthService} from "../../users/auth.service";
 
 @Component({
   selector: 'app-movies-detail',
@@ -12,7 +13,7 @@ export class MoviesDetailComponent implements OnInit {
   movie: Movie = new Movie();
   id: string;
 
-  constructor(private movieService: MoviesService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private authService: AuthService,private movieService: MoviesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -34,5 +35,13 @@ export class MoviesDetailComponent implements OnInit {
   onDelete(){
     this.movieService.deleteMovie(this.id);
     this.router.navigate(['/movies']);
+  }
+
+  isAuth(){
+    if(this.authService.isAuthenticated() == true){
+      return true;
+    } else {
+      return false;
+    }
   }
 }

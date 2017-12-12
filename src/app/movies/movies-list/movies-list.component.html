@@ -1,5 +1,7 @@
+<div *ngIf="isAuth()">
 <a class="btn btn-success" (click)="onNewMovie()">Add new movie</a>
 <br>
+</div>
 <app-movies-single
   *ngFor="let movieEl of movies; let i = index"
   [movie]="movieEl"
