@@ -1,11 +1,8 @@
-//bij mongo nog gebruikers
-
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Movie} from "../movies.model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MoviesService} from "../movies.service";
-import {validate} from "codelyzer/walkerFactory/walkerFn";
 
 @Component({
   selector: 'app-movies-edit',
