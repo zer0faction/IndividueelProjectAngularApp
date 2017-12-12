@@ -7,9 +7,9 @@ export class Movie {
   private _releaseDate: string;
   private _rating: string;
 
-  private directors: string[];
-  private writers: string[];
-  private genres: string[];
+  private _directors: string[];
+  private _writers: string[];
+  private _genres: string[];
 
   // constructor(_id: string,title: string,description: string,posterUrl: string,length: number,releaseDate: string, rating: string,
   //             directors: string[],writers:string[],genres: string[]){
@@ -83,6 +83,30 @@ export class Movie {
 
   public set length (n: number) {
     this._length = n;
+  }
+
+  public get directors (): string[]{
+    return this._directors;
+  }
+
+  public set directors (n: string[]){
+    this._directors = n;
+  }
+
+  public get writers (): string[]{
+    return this._writers;
+  }
+
+  public set writers (n: string[]){
+    this._writers = n;
+  }
+
+  public get genres (): string[]{
+    return this._genres;
+  }
+
+  public set genres (n: string[]){
+    this._genres = n;
   }
 }
 

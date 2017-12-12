@@ -16,4 +16,13 @@ export class HeaderComponent implements OnInit {
     this.authService.signoutUser();
   }
 
+  isAuth(){
+    if(this.authService.isAuthenticated() == true){
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
 }
