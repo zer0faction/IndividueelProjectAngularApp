@@ -32,4 +32,10 @@ export class MovieswatchedListComponent implements OnInit {
     }
     console.log(this.movies.length+' aantal films')
   }
+
+  removeMovie(movie:Movie){
+    this.authService.deleteFilmFromUser(movie._id);
+
+    this.movies = this.movies.filter(m => m !== movie)
+  }
 }
