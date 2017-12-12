@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/movies">Movies</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+      <ng-template [ngIf]="!authService.isAuthenticated()">
+        <li><a routerLink="/users/new">Register</a> </li>
+        <li><a routerLink="/users/login">Login</a> </li>
+      </ng-template>
+
+      <ng-template [ngIf]="authService.isAuthenticated()">
+        <li><a routerLink="/users/account">My account</a> </li>
+        <li><a routerLink="/home/" (click)="onLogout()">Logout</a> </li>
+      </ng-template>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+

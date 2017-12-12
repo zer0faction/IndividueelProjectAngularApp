@@ -1,0 +1,154 @@
+<form [formGroup]="movieForm">
+
+<div>
+  <button (click)="onSave()" class="btn btn-success" [disabled]="!movieForm.valid">Save</button>
+  <a class="btn btn-danger" (click)="onCancel()">Cancel</a>
+</div>
+
+<br>
+
+<div class="form-group">
+  <label for="title">Title</label>
+  <input type="text" id="title" formControlName="title" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="description">Description</label>
+  <textarea rows="4" type="text" id="description" formControlName="description" class="form-control">
+  </textarea>
+</div>
+
+<div class="form-group">
+  <label for="posterUrl">Poster URL</label>
+  <input type="text" id="posterUrl" formControlName="posterUrl" class="form-control" #posterUrl>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <img [src]="posterUrl.value" class="img-responsive" style="max-height: 330px">
+  </div>
+</div>
+
+  <br>
+
+<label>Directors</label>
+<div>
+  <div formArrayName="directors">
+    <div class="row"
+         *ngFor="let directorsC of movieForm.get('directors')['controls']; let i = index"
+          [formGroupName]="i"
+          style="margin-top: 10px">
+
+      <div class="col-xs-10">
+        <input
+        type="text"
+        class="form-control"
+        formControlName="name">
+      </div>
+
+      <div class="col-xs-2">
+        <button
+        type="button"
+        class="btn btn-danger"
+        (click)="onDeleteDirector(i)">Delete</button>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-success" (click)="onAddDirector()">Add director</button>
+</div>
+
+<br>
+
+<label>Writers</label>
+<div>
+  <div formArrayName="writers">
+    <div class="row"
+         *ngFor="let writersC of movieForm.get('writers')['controls']; let ii = index"
+         [formGroupName]="ii"
+         style="margin-top: 10px">
+
+      <div class="col-xs-10">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name">
+      </div>
+
+      <div class="col-xs-2">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="onDeleteWriter(ii)">Delete</button>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-success" (click)="onAddWriter()">Add writer</button>
+</div>
+  <br>
+
+<div class="form-group">
+  <label for="rating">Rated</label>
+  <input type="text" id="rating" formControlName="rating" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="releaseDate">Release Date</label>
+  <input type="text" id="releaseDate" formControlName="releaseDate" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="length">Length</label>
+  <div>
+    <input type="number" id="length" formControlName="length" class="form-control">
+  </div>
+
+</div>
+
+<label>Genres</label>
+<div>
+  <div formArrayName="genres">
+    <div class="row"
+         *ngFor="let genresC of movieForm.get('genres')['controls']; let iii = index"
+         [formGroupName]="iii"
+         style="margin-top: 10px">
+
+      <div class="col-xs-10">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="genre">
+      </div>
+
+      <div class="col-xs-2">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="onDeleteGenre(iii)">Delete</button>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-success" (click)="onAddGenre()">Add Genre</button>
+</div>
+
+<br>
+<br>
+<br>
+
+<div>
+  <button (click)="onSave()" class="btn btn-success" [disabled]="!movieForm.valid">Save</button>
+  <a class="btn btn-danger" (click)="onCancel()">Cancel</a>
+</div>
+
+</form>
+<br>
+<br>
+<br>
+<br>
+
+

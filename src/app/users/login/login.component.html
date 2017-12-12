@@ -1,0 +1,17 @@
+<h3 style="font-weight: bold">Login</h3>
+<br>
+<form [formGroup]="userForm">
+
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password" class="form-control">
+  </div>
+  <button class="btn btn-primary" (click)="onSignin()" [disabled]="!userForm.valid" type="submit">Login</button>
+
+</form>
+

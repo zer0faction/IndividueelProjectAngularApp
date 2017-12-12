@@ -1,0 +1,23 @@
+<div class="list-group-item clearfix">
+<a [routerLink]="[index]"
+   routerLinkActive="active"
+   class="list-group-item"
+   style="border:none">
+
+  <div>
+    <h4 class="list-group-item-heading">{{ movie.title }}</h4>
+    <p class="list-group-item-text">{{ movie.description }}</p>
+  </div>
+
+    <img
+      src="{{ movie.posterUrl }}"
+      class="img-responsive" style="max-height: 130px; ">
+
+
+</a>
+
+  <div *ngIf="isWatched() == false">
+    <button class="btn btn-primary" (click)="onAddToUser()">Add to watchlist</button>
+  </div>
+
+</div>
