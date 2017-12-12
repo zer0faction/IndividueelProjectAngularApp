@@ -4,7 +4,7 @@ import {Injectable} from "@angular/core";
 import {Movie} from "../movies/movies.model";
 import {MoviesService} from "../movies/movies.service";
 import {Subject} from "rxjs/Subject";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
@@ -13,8 +13,9 @@ export class AuthService {
   user: User = new User();
   movies: Movie[] = [];
   movie: Movie = new Movie();
+  strings: string[] = [];
 
-  constructor(private http: Http,private moviesService: MoviesService,private router:Router){}
+  constructor(private http: Http,private moviesService: MoviesService,private router:Router,private route: ActivatedRoute){}
 
   signupUser(user: User){
     this.http.post('https://movies-databas3.herokuapp.com/users/',user)
@@ -80,7 +81,11 @@ export class AuthService {
   }
 
   getWatchedMovies(){
-    // console.log('bekeken films: '+this.user.watchedmovies);
+    // if(this.getWatchedMovies() == null){
+    //   return this.strings;
+    // } else {
+    //   return this.user.watchedmovies;
+    // }
     return this.user.watchedmovies;
   }
 
@@ -88,7 +93,8 @@ export class AuthService {
   signoutUser(){
     this.token = null;
     this.user = null;
-    this.user.watchedmovies = [];
+    this.user.watchedmovies = null;
+    this.router.navigate(['/movies']);
   }
 
   isAuthenticated(){
@@ -98,5 +104,7 @@ export class AuthService {
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
   }
+
+
 }
 

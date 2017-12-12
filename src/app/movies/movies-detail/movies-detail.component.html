@@ -1,9 +1,8 @@
-<div>
+<div *ngIf="isAuth()">
   <a class="btn btn-success" (click)="onEdit()">Edit</a>
   <a class="btn btn-danger" (click)="onDelete()">Delete</a>
+  <br>
 </div>
-
-<br>
 
 <div class="list-group-item clearfix">
   <h2 class="list-group-item-heading">{{ movie.title }}</h2>

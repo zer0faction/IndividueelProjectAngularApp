@@ -3,6 +3,7 @@ import {Movie} from "../movies.model";
 import {MoviesService} from "../movies.service";
 import {Subscription} from "rxjs/Subscription";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../users/auth.service";
 
 @Component({
   selector: 'app-movies-list',
@@ -13,7 +14,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   movies: Movie[];
   subscription: Subscription;
 
-  constructor(private moviesService: MoviesService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService,private moviesService: MoviesService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.subscription = this.moviesService.moviesChanged
@@ -36,6 +37,14 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
+  }
+
+  isAuth(){
+    if(this.authService.isAuthenticated() == true){
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
