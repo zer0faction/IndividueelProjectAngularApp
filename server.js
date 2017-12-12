@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
+const http = require('http');
 
-app.user(express.static('AngularIndividueel'+'/dist'));
+const app = express()
+
+app.use(express.static(__dirname+'/dist'));
+
+const server = http.createServer(app);
 
 app.listen(process.env.PORT || 8080);
