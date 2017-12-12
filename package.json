@@ -29,7 +29,8 @@
     "express": "^4.16.2",
     "rxjs": "^5.5.4",
     "typescript": "~2.4.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "tslint": "~5.7.0"
   },
   "devDependencies": {
     "@angular/language-service": "^5.0.0",
@@ -47,8 +48,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
-    "ts-node": "~3.2.0",
-    "tslint": "~5.7.0"
+    "ts-node": "~3.2.0"
   },
   "engines": {
     "node": "6.10.2",
