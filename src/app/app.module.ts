@@ -18,20 +18,20 @@ import { NewAccountComponent } from './users/new-account/new-account.component';
 import { AccountComponent } from './users/account/account.component';
 import {AuthService} from "./users/auth.service";
 import { MovieswatchedListComponent } from './users/account/movieswatched-list/movieswatched-list.component';
-import { MovieswatchedSingleComponent } from './users/account/movieswatched-list/movieswatched-single/movieswatched-single.component';
 import {MoviesService} from "./movies/movies.service";
+import {AuthGuard} from "./users/auth-guard.service";
 
 const appRoutes: Routes = [
   //{ path: '', redirectTo: '/home',pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'movies', component: MoviesComponent, children: [
     {path: '', component: MoviesListComponent},
-    {path: 'new', component: MoviesEditComponent},
+    {path: 'new', component: MoviesEditComponent, canActivate:[AuthGuard]},
     {path: ':id', component: MoviesDetailComponent},
-    {path: ':id/edit', component: MoviesEditComponent}
+    {path: ':id/edit', component: MoviesEditComponent, canActivate:[AuthGuard]}
   ]},
   { path: 'users',component: UsersComponent, children: [
-    { path: 'account',component: AccountComponent},
+    { path: 'account',component: AccountComponent, canActivate:[AuthGuard]},
     { path: 'login',component: LoginComponent},
     { path: 'new',component: NewAccountComponent}
   ]}
@@ -51,8 +51,8 @@ const appRoutes: Routes = [
     LoginComponent,
     NewAccountComponent,
     AccountComponent,
-    MovieswatchedListComponent,
-    MovieswatchedSingleComponent
+    MovieswatchedListComponent
+
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService,MoviesService],
+  providers: [AuthService,MoviesService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

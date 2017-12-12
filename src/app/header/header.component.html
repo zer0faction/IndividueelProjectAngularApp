@@ -15,7 +15,7 @@
 
       <ng-template [ngIf]="authService.isAuthenticated()">
         <li><a routerLink="/users/account">My account</a> </li>
-        <li><a (click)="onLogout()" routerLink="/home/">Logout</a> </li>
+        <li><a routerLink="/home/" (click)="onLogout()">Logout</a> </li>
       </ng-template>
 
       </ul>

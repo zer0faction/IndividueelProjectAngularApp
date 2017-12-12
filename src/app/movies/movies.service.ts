@@ -15,7 +15,7 @@ export class MoviesService {
   constructor(private http: Http){}
 
   getMovies(){
-    return this.http.get('http://localhost:4200/movies/')
+    return this.http.get('https://movies-databas3.herokuapp.com/movies/')
       .toPromise()
       .then(response => {
         this.movies = response.json() as Movie[];
@@ -27,7 +27,7 @@ export class MoviesService {
   }
 
   getMovie(id: string) {
-    return this.http.get('http://localhost:4200/movies/'+id)
+    return this.http.get('https://movies-databas3.herokuapp.com/movies/'+id)
       .toPromise()
       .then(response => {
         return response.json() as Movie;
@@ -39,7 +39,7 @@ export class MoviesService {
   }
 
   addMovie(movie: Movie) {
-    this.http.post('http://localhost:4200/movies/',movie)
+    this.http.post('https://movies-databas3.herokuapp.com/movies/',movie)
       .toPromise()
       .then(response => {
         this.moviesChanged.next(this.movies.slice());
@@ -50,7 +50,7 @@ export class MoviesService {
   }
 
   updateMovie(id: string, movie: Movie) {
-    this.http.put('http://localhost:4200/movies/'+id,movie)
+    this.http.put('https://movies-databas3.herokuapp.com/movies/'+id,movie)
       .toPromise()
       .then(response => {
         this.moviesChanged.next(this.movies.slice());
@@ -61,7 +61,7 @@ export class MoviesService {
   }
 
   deleteMovie(id: string) {
-    this.http.delete('http://localhost:4200/movies/'+id)
+    this.http.delete('https://movies-databas3.herokuapp.com/movies/'+id)
       .toPromise()
       .then(response => {
         this.moviesChanged.next(this.movies.slice());
