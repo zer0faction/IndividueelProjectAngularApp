@@ -7,10 +7,7 @@ import {Subject} from "rxjs/Subject";
 export class MoviesService {
   moviesChanged = new Subject<Movie[]>();
   private movies: Movie[];
-  //= [
-  //  new Movie('1','eerste film','Leuke film','',100),
-  //  new Movie('2','Eerste film','Leuke film','',100)
-  //]
+  private movie: Movie;
 
   constructor(private http: Http){}
 
@@ -42,7 +39,17 @@ export class MoviesService {
     this.http.post('https://movies-databas3.herokuapp.com/movies/',movie)
       .toPromise()
       .then(response => {
+        this.movie = response.json();
         this.moviesChanged.next(this.movies.slice());
+        console.log(this.movie._id+'ID!!')
+        this.http.post('https://movies3-neo4j.herokuapp.com/movies/add/'+this.movie._id,movie)
+          .toPromise()
+          .then(res => {
+            console.log(res);
+          })
+          .catch(error => {
+            return this.handleError(error);
+          })
       })
       .catch(error => {
         return this.handleError(error);
@@ -53,7 +60,16 @@ export class MoviesService {
     this.http.put('https://movies-databas3.herokuapp.com/movies/'+id,movie)
       .toPromise()
       .then(response => {
+        console.log(movie._id);
         this.moviesChanged.next(this.movies.slice());
+        this.http.post('https://movies3-neo4j.herokuapp.com/movies/add/'+id,movie)
+          .toPromise()
+          .then(res => {
+            console.log(res);
+          })
+          .catch(error => {
+            return this.handleError(error);
+          })
       })
       .catch(error => {
         return this.handleError(error);
@@ -69,6 +85,15 @@ export class MoviesService {
       .catch(error => {
         return this.handleError(error);
       });
+
+    this.http.delete('https://movies3-neo4j.herokuapp.com/movies/add/'+id)
+      .toPromise()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        return this.handleError(error);
+      })
   }
 
   private handleError(error: any): Promise<any> {

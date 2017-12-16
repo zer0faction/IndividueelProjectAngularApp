@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class AuthService {
   userChanged = new Subject<User>();
   token: string = null;
+  private user2: User;
   user: User = new User();
   movies: Movie[] = [];
   movie: Movie = new Movie();
@@ -20,6 +21,14 @@ export class AuthService {
   signupUser(user: User){
     this.http.post('https://movies-databas3.herokuapp.com/users/',user)
       .toPromise()
+      .then(res => {
+        this.user2 = res.json()
+        this.http.post('https://movies3-neo4j.herokuapp.com/users/add/'+this.user2._id,this.user)
+          .toPromise()
+          .catch(error => {
+            return this.handleError(error);
+          })
+      })
       .catch(error => {
         return this.handleError(error);
       })
@@ -61,6 +70,13 @@ export class AuthService {
       .then(response => {
         this.userChanged.next(this.user)
       })
+      .catch(error => {
+        return this.handleError(error);
+      })
+
+    console.log(this.user.watchedmovies)
+    this.http.put('https://movies3-neo4j.herokuapp.com/users/movieswatched/',this.user)
+      .toPromise()
       .catch(error => {
         return this.handleError(error);
       })
